@@ -1,5 +1,7 @@
 package observer.observer;
 
+import observer.dto.WeatherDto;
+
 public interface Observer {
-    void update();
+    void update(WeatherDto weatherDto);
 }

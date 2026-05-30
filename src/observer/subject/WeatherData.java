@@ -1,5 +1,6 @@
 package observer.subject;
 
+import observer.dto.WeatherDto;
 import observer.observer.Observer;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class WeatherData implements Subject {
         observers = new ArrayList<>();
     }
 
+
     public void registerObserver(Observer observer) {
         observers.add(observer);
     }
@@ -26,7 +28,8 @@ public class WeatherData implements Subject {
     }
 
     public void notifyObservers() {
-        observers.forEach(Observer::update);
+        observers.forEach((observer) ->
+            observer.update(new WeatherDto(temperature, humidity, pressure)));
     }
 
     public void measurementsChanged() {

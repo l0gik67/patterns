@@ -1,5 +1,6 @@
 package observer.observer;
 
+import observer.dto.WeatherDto;
 import observer.subject.Subject;
 
 public class CurrentConditionsDisplay implements Observer, DisplayElement{
@@ -13,8 +14,9 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement{
         weatherData.registerObserver(this);
     }
 
-    public void update() {
-
+    public void update(WeatherDto weather) {
+        temperature = weather.getTemperature();
+        humidity = weather.getHumidity();
         display();
     }
 
