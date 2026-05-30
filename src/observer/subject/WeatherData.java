@@ -1,36 +1,19 @@
 package observer.subject;
 
 import observer.dto.WeatherDto;
-import observer.observer.Observer;
+import java.util.Observer;
+import java.util.Observable;
+
 
 import java.util.ArrayList;
 
-public class WeatherData implements Subject {
+public class WeatherData extends Observable {
 
-    private ArrayList<Observer> observers;
     private float temperature;
     private float humidity;
     private float pressure;
 
-    public WeatherData() {
-        observers = new ArrayList<>();
-    }
-
-
-    public void registerObserver(Observer observer) {
-        observers.add(observer);
-    }
-
-    public void removeObserver(Observer observer) {
-        int i =  observers.indexOf(observer);
-        observers.set(i, observers.getLast());
-        observers.removeLast();
-    }
-
-    public void notifyObservers() {
-        observers.forEach((observer) ->
-            observer.update(new WeatherDto(temperature, humidity, pressure)));
-    }
+    public WeatherData() {}
 
     public void measurementsChanged() {
         notifyObservers();
